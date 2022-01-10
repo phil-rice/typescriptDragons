@@ -1,4 +1,4 @@
-import { addErrorHandling, Func, logAndThrow } from "./errorhandling";
+import { addErrorHandling, Func, logAndThrowES } from "./errorhandling";
 
 export const logger = (msg: string) => {
     //logs the message in some way not defined here

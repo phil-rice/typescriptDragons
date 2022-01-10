@@ -1,4 +1,4 @@
-import { addErrorHandling, ErrorStrategy } from "./errorhandling";
+import { addErrorHandling, ErrorStrategy, logAndThrowES } from "./errorhandling";
 
 
 export function bizlogicString(x: string) {return x + ".normal"}
@@ -29,5 +29,14 @@ describe("AddErrorHandling", () => {
         const errorFn = throwError<number, number>(10)
         const wrapped = addErrorHandling(testErrorStrategyNumber)(errorFn)
         expect(wrapped(10)).toEqual(110)
+    })
+})
+
+describe("logAndThrowES", () => {
+    it("should log and throw the error", () => {
+        var remembered: string = ""
+        expect(() => logAndThrowES<string, string>(m => remembered = m)((e, from) => `${e} + ${from}`)("error", "from")).toThrow("error")
+        expect(remembered).toEqual("error + from")
+
     })
 })

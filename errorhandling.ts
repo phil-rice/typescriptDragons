@@ -11,7 +11,7 @@ export const addErrorHandling = <From, To>(errorStrategy: ErrorStrategy<From, To
     }
 };
 
-export const logAndThrow = <From, To>(logger: (msg: string) => void) => (msgFn: (e: any, from: From) => string): ErrorStrategy<From, To> => {
+export const logAndThrowES = <From, To>(logger: (msg: string) => void) => (msgFn: (e: any, from: From) => string): ErrorStrategy<From, To> => {
     return (e: any, from: From) => {
         logger(msgFn(e, from))
         throw e
