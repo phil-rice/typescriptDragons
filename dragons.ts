@@ -3,8 +3,8 @@ function logger(msg: string) {
 }
 
 var timesBeenHit: number = 0
-
-class Dragon {
+var timesKilled: number = 0
+export class Dragon {
     hitpoints: number
     alive: boolean
 
@@ -13,13 +13,14 @@ class Dragon {
         this.alive = alive;
     }
 
-    isDead() {return this.alive}
+    isDead() {return !this.alive}
     damage(amount: number): Dragon {
         try {
             if (amount <= 0 || this.isDead()) { return this}
             let newHitpoints = this.hitpoints - amount
             if (newHitpoints <= 0) {
                 logger(`dragon was hit for ${amount} and is now DEAD!`)
+                timesKilled++
                 return new Dragon(0, false)
             }
             timesBeenHit++
@@ -31,3 +32,5 @@ class Dragon {
         }
     }
 }
+
+export const freshDragon = new Dragon(1000, true)
