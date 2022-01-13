@@ -10,7 +10,7 @@ describe("addMetrics", () => {
             var metricLog: string[] = []
             const fn = addMetrics<number, number>(name => {metricLog = [...metricLog, name]}, n => [`metric${n}`])(bizlogic)
             expect(fn(1)).toEqual(11)
-            expect(metricLog).toEqual('')
+            expect(metricLog).toEqual(['metric1'])
         })
     }
 )
