@@ -1,5 +1,7 @@
+import { Func } from "./nonfunctionals";
+
 export type ErrorStrategy<From, To> = (e: any, f: From) => To
-export type Func<From, To> = (f: From) => To
+
 
 export const addErrorHandling = <From, To>(errorStrategy: ErrorStrategy<From, To>) => (bizLogic: Func<From, To>): Func<From, To> => {
     return (from: From) => {
